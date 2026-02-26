@@ -101,57 +101,80 @@
         </div>
       </aside>
 
-      <!-- JOBB OLDAL: ŰRLAP -->
-      <div class="card" style="padding: 2.5rem;">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text);">Küldj üzenetet</h2>
-        
-        <!-- Az 'action' és 'method' mezőket a használt form-szolgáltatódhoz kell igazítani (pl. Formspree, Netlify Forms) -->
-        <form action="#" method="POST" class="form" style="max-width: 100%;">
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name" class="form-label">Teljes név *</label>
-              <input type="text" id="name" name="name" class="form-control" placeholder="Pl. Kiss Péter" required>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="form-label">Telefonszám *</label>
-              <input type="tel" id="phone" name="phone" class="form-control" placeholder="+36 20 123 4567" required>
-            </div>
-          </div>
+<!-- JOBB OLDAL: ŰRLAP -->
+<div class="card" style="padding: 2.5rem;">
+  <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text);">Küldj üzenetet</h2>
+  
+  <!-- FormSubmit beállítás: Az action az info@klimamed.hu-ra mutat -->
+  <form action="https://formsubmit.co/info@klimamed.hu" method="POST" class="form" style="max-width: 100%;">
+    
+    <!-- FORMSUBMIT BEÁLLÍTÁSOK (Rejtett mezők) -->
+    <!-- 1. Válasz e-mail tárgya -->
+    <input type="hidden" name="_subject" value="Új ajánlatkérés a klimamed.hu weboldalról!">
+    <!-- 2. Sikeres küldés utáni átirányítás (ugyanarra az oldalra megy vissza, de a FormSubmit mutat egy "Sikeres" oldalt alapból. Később ide tehetsz egy saját köszönőoldal URL-t is, pl. value="https://klimamed.hu/koszonjuk.html") -->
+    <!-- <input type="hidden" name="_next" value="https://klimamed.hu/"> -->
+    <!-- 3. HONEYPOT: Láthatatlan mező spam robotok ellen. Ha egy bot kitölti, a FormSubmit eldobja a levelet! -->
+    <input type="text" name="_honey" style="display:none">
+    <!-- 4. Válasz email címe funkció: Így ha rányomsz a válaszra a Gmailben, az ügyfél email címét hozza be -->
+    <input type="hidden" name="_replyto">
+    <!-- 5. Kérünk egy sima, szép formátumú emailt -->
+    <input type="hidden" name="_template" value="box">
 
-          <div class="form-group">
-            <label for="email" class="form-label">Email cím *</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="pelda@email.hu" required>
-          </div>
-
-          <div class="form-group">
-            <label for="subject" class="form-label">Miben segíthetek?</label>
-            <select id="subject" name="subject" class="form-control" style="cursor: pointer;">
-              <option value="telepites">Új klíma telepítése</option>
-              <option value="karbantartas">Klíma karbantartás / tisztítás</option>
-              <option value="javitas">Klíma javítás</option>
-              <option value="egyeb">Egyéb kérdés / Árajánlat kérés</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message" class="form-label">Üzenet (opcionális)</label>
-            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Kérlek írd le röviden, hogy pontosan miben segíthetek, illetve hogy hol található a helyszín..."></textarea>
-          </div>
-
-          <!-- ADATVÉDELMI CHECKBOX -->
-          <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.8rem; margin-top: 1.5rem; margin-bottom: 2rem;">
-            <input type="checkbox" id="privacy" name="privacy" required style="margin-top: 0.3rem; width: 1.2rem; height: 1.2rem; accent-color: var(--color-primary); cursor: pointer;">
-            <label for="privacy" style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.4; cursor: pointer;">
-              Az <a href="adatkezelesi-tajekozatato-impresszum.html" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Adatvédelmi tájékoztatót</a> megismertem és elfogadom az adataim kezelését a kapcsolatfelvétel céljából. *
-            </label>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 0.8rem;">
-            Üzenet küldése
-          </button>
-        </form>
+    <!-- LÁTHATÓ MEZŐK (Ugyanaz, mint eddig, de fontos, hogy mindenhol legyen "name" attribútum) -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name" class="form-label">Teljes név *</label>
+        <input type="text" id="name" name="Név" class="form-control" placeholder="Pl. Kiss Péter" required>
       </div>
+      <div class="form-group">
+        <label for="phone" class="form-label">Telefonszám *</label>
+        <input type="tel" id="phone" name="Telefon" class="form-control" placeholder="+36 20 123 4567" 
+       pattern="^\+?[0-9\s\-\(\)]+$" 
+       title="A telefonszám csak számokat, szóközöket, kötőjeleket és az elején egy opcionális + jelet tartalmazhat!" 
+       required>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email cím *</label>
+      <input type="email" id="email" name="Email" class="form-control" placeholder="pelda@email.hu" 
+       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+       title="Kérjük, adjon meg egy érvényes email címet! (pl. pelda@email.hu)" 
+       required>
+
+    </div>
+
+    <div class="form-group">
+      <label for="subject" class="form-label">Miben segíthetek?</label>
+      <select id="subject" name="Tárgy" class="form-control" style="cursor: pointer;">
+        <option value="Új klíma telepítése">Új klíma telepítése</option>
+        <option value="Klíma karbantartás / tisztítás">Klíma karbantartás / tisztítás</option>
+        <option value="Klíma javítás">Klíma javítás</option>
+        <option value="Egyéb kérdés / Árajánlat kérés">Egyéb kérdés / Árajánlat kérés</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message" class="form-label">Üzenet (opcionális)</label>
+      <textarea id="message" name="Üzenet" class="form-control" rows="5" placeholder="Kérlek írd le röviden, hogy pontosan miben segíthetek, illetve hogy hol található a helyszín..."></textarea>
+    </div>
+
+    <!-- ADATVÉDELMI CHECKBOX -->
+    <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.8rem; margin-top: 1.5rem; margin-bottom: 2rem;">
+      <!-- A GDPR miatt ezt is beleíratjuk az emailbe, hogy tudd, elfogadta -->
+      <input type="checkbox" id="privacy" name="Adatvédelem_elfogadva" value="Igen" required style="margin-top: 0.3rem; width: 1.2rem; height: 1.2rem; accent-color: var(--color-primary); cursor: pointer;">
+      <label for="privacy" style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.4; cursor: pointer;">
+        Az <a href="adatkezelesi-tajekozatato-impresszum.html" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Adatvédelmi tájékoztatót</a> megismertem és elfogadom az adataim kezelését a kapcsolatfelvétel céljából. *
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 0.8rem;">
+      Üzenet küldése
+    </button>
+  </form>
+</div>
+
 
     </div>
   </section>
