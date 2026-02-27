@@ -735,4 +735,44 @@ select.form-control {
     width: 100%;
   }
 }
+/* ====== JOGI OLDAL (ADATVÉDELEM / IMPRESSZUM) JAVÍTÁSA ====== */
+
+/* Hogy hosszú linkek (pl. email) vagy szavak ne lógjanak ki a kártyából mobilon */
+#impresszum, #adatvedelem {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Kártya belső margójának csökkentése mobilon, hogy több hely legyen a szövegnek */
+@media (max-width: 768px) {
+  /* A jogi oldalon lévő nagy kártya paddingjének csökkentése */
+  .card {
+    padding: 1.5rem !important; /* A 3rem túl sok volt mobilon! */
+  }
+  
+  /* A címsorok mérete mobilon */
+  #impresszum h2, #adatvedelem h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  #adatvedelem h3 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Az ugró gombok egymás alatt legyenek mobilon, hogy ne essenek szét */
+  .btn-ghost {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Az impresszum kék dobozának javítása, ha túl keskeny a telefon */
+.impresszum-box {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  overflow-x: hidden; /* Ne engedjen ki scrollozást */
+}
 
