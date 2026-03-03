@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+  <!-- GOOGLE CONSENT MODE V2 ÉS GA4 KÓD -->
+  <script>
+    // 1. Consent Mode: Alapértelmezett tiltás beállítása
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+  </script>
+
+  <!-- 2. GA4 Alapkód betöltése (Cseréld ki a G-XXXXXXXXXX-t a tiédre!) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XXXXXXXXXX'); 
+  </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
