@@ -1,66 +1,63 @@
 (function() {
 
-    // --- SÜTI (COOKIE) BANNER ÉS ANALITIKA LOGIKA ---
+
   var cookieBanner = document.getElementById("cookie-banner");
   var acceptButton = document.getElementById("accept-cookies");
   var rejectButton = document.getElementById("reject-cookies");
 
-  // Ide jön majd a Google Analytics kódod (GA4)
-  function loadGoogleAnalytics() {
-    console.log("Marketing sütik engedélyezve: Analytics betöltése...");
-    // Ide fogod bemásolni a Google által adott <script> kódot dinamikusan
-    // Pl: 
-    // var script = document.createElement('script');
-    // script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-    // document.head.appendChild(script);
-    // ... és a többi config rész.
+  function updateGoogleConsent(status) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    gtag('consent', 'update', {
+      'analytics_storage': status,
+      'ad_storage': status,
+      'ad_user_data': status,
+      'ad_personalization': status
+    });
   }
 
   if (cookieBanner && acceptButton && rejectButton) {
-    // Kinyerjük a mentett állapotot
+
     var cookieConsent = localStorage.getItem("klimamedCookieConsent");
 
     if (!cookieConsent) {
-      // Ha még nem döntött, megmutatjuk a bannert
+      // Ha még nem döntött, 1 másodperc múlva beúszik a banner
       setTimeout(function() {
         cookieBanner.classList.add("show");
       }, 1000);
     } else if (cookieConsent === "accepted") {
-      // Ha korábban már elfogadta, azonnal betöltjük az Analytics-et!
-      loadGoogleAnalytics();
-    }
+      // Ha korábban már elfogadta, azonnal engedélyezzük az mérést a Google-nek
+      updateGoogleConsent('granted');
+    } 
 
-    // Ha az ELFOGADOM gombra nyom
     acceptButton.addEventListener("click", function() {
       localStorage.setItem("klimamedCookieConsent", "accepted");
       cookieBanner.classList.remove("show");
-      // Mivel most fogadta el, rögtön betöltjük a követő kódot
-      loadGoogleAnalytics();
+      console.log("Sütik elfogadva: Analitika engedélyezése...");
+      // Közöljük a Google-lel, hogy mostantól mérhet
+      updateGoogleConsent('granted');
     });
 
-    // Ha az ELUTASÍTOM gombra nyom
+ 
     rejectButton.addEventListener("click", function() {
-      // Eltároljuk, hogy elutasította (így legközelebb nem zavarjuk a bannerrel)
       localStorage.setItem("klimamedCookieConsent", "rejected");
       cookieBanner.classList.remove("show");
-      console.log("Marketing sütik elutasítva. Analytics nem töltődik be.");
-      // Fontos: Itt nem hívjuk meg a loadGoogleAnalytics() függvényt!
+      console.log("Sütik elutasítva: Analitika tiltva marad.");
+      // Biztosítjuk, hogy a tiltás érvényben maradjon
+      updateGoogleConsent('denied');
     });
   }
-
-
-
-  // --- MOBIL MENÜ KEZELÉS ---
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks = document.querySelector('.nav-links');
   
   if (navToggle && navLinks) {
-    // Menü nyitása / zárása kattintásra
+ 
     navToggle.addEventListener('click', function() {
       navLinks.classList.toggle('is-open');
     });
 
-    // Menü automatikus zárása görgetéskor
+
     window.addEventListener('scroll', function() {
       if (navLinks.classList.contains('is-open')) {
         navLinks.classList.remove('is-open');
@@ -68,7 +65,7 @@
     }, { passive: true });
   }
 
-  // --- FINOM BEÚSZÓ ANIMÁCIÓK SCROLLRA ---
+
   var els = document.querySelectorAll('.fade-in');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
@@ -83,7 +80,7 @@
   } else {
     els.forEach(function(el) { el.classList.add('is-visible'); });
   }
-  // --- IRÁNYÉRZÉKENY (DIRECTION-AWARE) STICKY LOGIKA ---
+  
   var container = document.getElementById("smart-sticky-container");
   var card = document.getElementById("smart-sticky-card");
 
@@ -93,9 +90,8 @@
     var headerHeight = 90;
     var ticking = false;
 
-    // FONTOS: Létrehozunk egy ellenőrző logikát
     function isDesktop() {
-      // Csak 900px felett engedélyezzük a sticky működést (ahol a CSS-ben 2 oszlopos a grid)
+    
       return window.innerWidth > 900; 
     }
 
