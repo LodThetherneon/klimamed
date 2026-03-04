@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Klíma | Sikeres üzenetküldés</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="assets/js/main.js" defer></script>
+  
+  <style>
+   
+    
+    .success-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 75vh;
+      overflow: hidden;
+    }
+
+    
+    .success-wrapper::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(255,255,255,0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    .success-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08), 0 0 15px rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      max-width: 550px;
+      width: 90%;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUpFade 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    
+    .checkmark-container {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem auto;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 3;
+      stroke: #10b981; 
+      stroke-miterlimit: 10;
+      box-shadow: inset 0px 0px 0px #10b981;
+      animation: fill 0.4s ease-in-out .4s forwards, scale 0.3s ease-in-out .9s both;
+    }
+
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+      stroke: #10b981;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark-check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    
+    .success-title {
+      font-size: 2.2rem;
+      color: #111827;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUpFade 0.5s 1s forwards;
+    }
+
+    .success-text {
+      font-size: 1.1rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUpFade 0.5s 1.2s forwards;
+    }
+
+    .btn-wrapper {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUpFade 0.5s 1.4s forwards;
+    }
+
+    
+    @keyframes stroke {
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes scale {
+      0%, 100% { transform: none; }
+      50% { transform: scale3d(1.1, 1.1, 1); }
+    }
+    @keyframes fill {
+      100% { box-shadow: inset 0px 0px 0px 50px rgba(16, 185, 129, 0.1); }
+    }
+    @keyframes slideUpFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseGlow {
+      from { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      to { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="header">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-logo">
+          <img src="photos/logonohatterpng.png" alt="Logó">
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Kezdőoldal</a>
+        <a href="klima-telepites.html">Klíma telepítés</a>
+        <a href="klima-karbantartas-tisztitas.html">Klíma karbantartás, tisztítás</a>
+        <a href="kapcsolat.html">Kapcsolat</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  
+  <main class="main success-wrapper">
+    <div class="success-card">
+      
+      
+      <svg class="checkmark-container" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+      
+      <h1 class="success-title">Sikeres küldés!</h1>
+      
+      <p class="success-text">
+        Köszönjük az ajánlatkérést!<br>
+        Levelét megkaptuk. 
+        Kollégánk hamarosan a megadott elérhetőségeken felveszi Önnel a kapcsolatot.
+      </p>
+      
+      <div class="btn-wrapper">
+        <a class="btn btn-primary" href="index.html" style="padding: 0.9rem 2.5rem; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+          Vissza a főoldalra
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Klíma szolgáltatások</h4>
+        <p>Professzionális klímamegoldások felméréstől a karbantartásig.</p>
+      </div>
+      <div>
+        <h4>Oldalak</h4>
+        <ul>
+          <li><a href="index.html">Kezdőoldal</a></li>
+          <li><a href="klima-telepites.html">Klíma telepítés</a></li>
+          <li><a href="klima-karbantartas-tisztitas.html">Klíma karbantartás, tisztítás</a></li>
+          <li><a href="kapcsolat.html">Kapcsolat</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Jogi</h4>
+        <ul>
+          <li><a href="adatkezelesi-tajekozatato-impresszum.html">Adatkezelési tájékoztató / Impresszum</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Klíma. Minden jog fenntartva.</div>
+  </footer>
+</body>
+</html>

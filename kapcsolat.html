@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <!-- GOOGLE CONSENT MODE V2 ÉS GA4 KÓD -->
+  
   <script>
-    // 1. Consent Mode: Alapértelmezett tiltás beállítása
+    // 1. Consent Mode: Alapértelmezett
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     
@@ -92,7 +92,7 @@
   <div style="font-size: 2rem; opacity: 0.9;">👤</div>
   <div>
     <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin: 0;">Név</p>
-    <!-- IDE KERÜLT A COLOR: #FFFFFF -->
+    
     <p style="font-size: 1.2rem; font-weight: 600; margin: 0; color: #ffffff;">Vajda Roland</p>
   </div>
 </div>
@@ -125,30 +125,32 @@
         </div>
       </aside>
 
-<!-- JOBB OLDAL: ŰRLAP -->
+
 <div class="card" style="padding: 2.5rem;">
   <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text);">Küldj üzenetet</h2>
   
-  <!-- FormSubmit beállítás: Az action az info@klimamed.hu-ra mutat -->
   <form action="https://formsubmit.co/info@klimamed.hu" method="POST" class="form" style="max-width: 100%;">
     
-    <!-- FORMSUBMIT BEÁLLÍTÁSOK (Rejtett mezők) -->
-    <!-- 1. Válasz e-mail tárgya -->
+       <!-- FORMSUBMIT BEÁLLÍTÁSOK (Rejtett mezők) -->
+    
+    
     <input type="hidden" name="_subject" value="Új ajánlatkérés a klimamed.hu weboldalról!">
-    <!-- 2. Sikeres küldés utáni átirányítás (ugyanarra az oldalra megy vissza, de a FormSubmit mutat egy "Sikeres" oldalt alapból. Később ide tehetsz egy saját köszönőoldal URL-t is, pl. value="https://klimamed.hu/koszonjuk.html") -->
-    <!-- <input type="hidden" name="_next" value="https://klimamed.hu/"> -->
-    <!-- 3. HONEYPOT: Láthatatlan mező spam robotok ellen. Ha egy bot kitölti, a FormSubmit eldobja a levelet! -->
+    
+    <input type="hidden" name="_next" value="https://klimamed.hu/sikeres-kuldes.html">
+    
+    <input type="hidden" name="_captcha" value="true">
+
     <input type="text" name="_honey" style="display:none">
-    <!-- 4. Válasz email címe funkció: Így ha rányomsz a válaszra a Gmailben, az ügyfél email címét hozza be -->
+    
     <input type="hidden" name="_replyto">
-    <!-- 5. Kérünk egy sima, szép formátumú emailt -->
+    
     <input type="hidden" name="_template" value="table">
 
-    <!-- LÁTHATÓ MEZŐK (Ugyanaz, mint eddig, de fontos, hogy mindenhol legyen "name" attribútum) -->
+    
     <div class="form-row">
       <div class="form-group">
         <label for="name" class="form-label">Teljes név *</label>
-        <input type="text" id="name" name="Név" class="form-control" placeholder="Pl. Kiss Péter" required>
+        <input type="text" id="name" name="Név" class="form-control" placeholder="Pl. Kiss Zoltán" required>
       </div>
       <div class="form-group">
         <label for="phone" class="form-label">Telefonszám *</label>
@@ -184,9 +186,9 @@
       <textarea id="message" name="Üzenet" class="form-control" rows="5" placeholder="Kérlek írd le röviden, hogy pontosan miben segíthetek, illetve hogy hol található a helyszín..."></textarea>
     </div>
 
-    <!-- ADATVÉDELMI CHECKBOX -->
+    
     <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.8rem; margin-top: 1.5rem; margin-bottom: 2rem;">
-      <!-- A GDPR miatt ezt is beleíratjuk az emailbe, hogy tudd, elfogadta -->
+      
       <input type="checkbox" id="privacy" name="Adatvédelem_elfogadva" value="Igen" required style="margin-top: 0.3rem; width: 1.2rem; height: 1.2rem; accent-color: var(--color-primary); cursor: pointer;">
       <label for="privacy" style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.4; cursor: pointer;">
         Az <a href="adatkezelesi-tajekozatato-impresszum.html" target="_blank" style="color: var(--color-primary); text-decoration: underline;">Adatvédelmi tájékoztatót</a> megismertem és elfogadom az adataim kezelését a kapcsolatfelvétel céljából. *
@@ -226,7 +228,7 @@
   <div class="footer-bottom">&copy; 2026 Vajda Roland E.V. - Minden jog fenntartva.</div>
 </footer>
 
-<!-- SÜTI (COOKIE) BANNER -->
+
 <div id="cookie-banner" class="cookie-banner">
   <div class="cookie-content">
     <p>
@@ -235,7 +237,7 @@
       <a href="adatkezelesi-tajekozatato-impresszum.html">További információk.</a>
     </p>
     <div class="cookie-actions">
-      <!-- "Csak az elengedhetetlenek" gomb (Gyakorlatilag az elutasítás) -->
+      
       <button id="reject-cookies" class="btn btn-ghost btn-sm" style="color: white; border-color: rgba(255,255,255,0.4);">Elutasítás</button>
       <button id="accept-cookies" class="btn btn-primary btn-sm">Elfogadom</button>
     </div>
