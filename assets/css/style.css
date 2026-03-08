@@ -775,4 +775,17 @@ select.form-control {
   border-radius: 0 0.5rem 0.5rem 0;
   overflow-x: hidden; /* Ne engedjen ki scrollozást */
 }
+/* ====== HERO GOMBOK MOBIL JAVÍTÁS ====== */
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column; /* Egymás alá kerülnek a gombok */
+    align-items: stretch;   /* Teljes szélességre húzza ki mindkettőt */
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
 
